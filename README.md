@@ -8,6 +8,20 @@ the most useful engineering workflow gates for everyday software work:
 clarify, plan, implement in slices, verify, debug, review, and challenge risky
 decisions before they become expensive.
 
+## Описание На Русском
+
+Это публичный пакет инженерных skills для Codex. Он помогает работать с Codex
+не как с одноразовым генератором кода, а как с инженерным партнёром: сначала
+прояснять задачу, собирать правильный контекст, проектировать решение,
+разбивать работу на проверяемые шаги, сверяться с актуальными источниками,
+отлаживать по фактам, писать проверки и делать ревью перед тем, как считать
+работу готовой.
+
+Пакет вдохновлён репозиторием
+[addyosmani/agent-skills](https://github.com/addyosmani/agent-skills), но
+адаптирован под Codex-style workflow и очищен от персональных настроек,
+локальных путей и приватных проектных данных.
+
 ## What This Is
 
 Skills are small instruction folders. Each folder contains a `SKILL.md` file
