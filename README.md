@@ -1,162 +1,250 @@
 # Codex First Skills Pack
 
-Opinionated engineering skills for Codex and other Markdown-based coding agents.
+Публичный пакет инженерных skills для Codex и других Markdown-based coding agents.
 
-This pack is a compact Codex-oriented adaptation inspired by
-[addyosmani/agent-skills](https://github.com/addyosmani/agent-skills). It keeps
-the most useful engineering workflow gates for everyday software work:
-clarify, plan, implement in slices, verify, debug, review, and challenge risky
-decisions before they become expensive.
-
-## Описание На Русском
-
-Это публичный пакет инженерных skills для Codex. Он помогает работать с Codex
-не как с одноразовым генератором кода, а как с инженерным партнёром: сначала
-прояснять задачу, собирать правильный контекст, проектировать решение,
-разбивать работу на проверяемые шаги, сверяться с актуальными источниками,
-отлаживать по фактам, писать проверки и делать ревью перед тем, как считать
-работу готовой.
+Этот репозиторий помогает работать с Codex не как с одноразовым генератором
+кода, а как с инженерным партнёром: сначала прояснять задачу, собирать
+правильный контекст, проектировать решение, разбивать работу на проверяемые
+шаги, сверяться с актуальными источниками, отлаживать по фактам, писать
+проверки и делать ревью перед тем, как считать работу готовой.
 
 Пакет вдохновлён репозиторием
-[addyosmani/agent-skills](https://github.com/addyosmani/agent-skills), но
-адаптирован под Codex-style workflow и очищен от персональных настроек,
-локальных путей и приватных проектных данных.
+[addyosmani/agent-skills](https://github.com/addyosmani/agent-skills), но не
+является его зеркалом. Это компактная Codex-oriented адаптация с фокусом на
+ежедневный engineering workflow.
 
-## What This Is
+## Что Это Такое
 
-Skills are small instruction folders. Each folder contains a `SKILL.md` file
-with frontmatter that tells Codex when to load the skill, and a body that gives
-the workflow Codex should follow.
+Skills в Codex это небольшие папки с инструкциями. В каждой папке лежит
+`SKILL.md`:
 
-This repository is designed for people who want Codex to work less like a
-one-shot code generator and more like a disciplined engineering partner:
+- frontmatter с `name` и `description` помогает Codex понять, когда skill нужно
+  загрузить;
+- основное тело `SKILL.md` описывает workflow, проверки, stop-lines и типичные
+  ошибки;
+- Codex читает полный skill только тогда, когда запрос пользователя подходит
+  под его описание.
 
-- define the work before coding;
-- keep context bounded;
-- use official sources for version-sensitive APIs;
-- break large changes into verified slices;
-- debug from evidence instead of guessing;
-- write tests or focused checks before claiming success;
-- review changes before calling them done;
-- use adversarial review for high-risk decisions.
+Идея простая: пользователь не обязан помнить точное имя skill. Он может сказать
+обычным языком: "разбей на задачи", "проверь по актуальным docs", "разбери баг",
+"докажи тестом", "сделай review". Codex должен сам выбрать подходящий skill и
+следовать его процессу.
 
-## Included Skills
+## Для Кого Этот Пакет
 
-| Skill | Use When |
+Пакет полезен, если вы хотите, чтобы Codex:
+
+- не начинал писать код до понимания задачи;
+- не терялся в большом репозитории;
+- не полагался на устаревшую память для API, SDK, CLI и cloud-сервисов;
+- не делал большие непроверенные изменения одним куском;
+- разбирал ошибки системно, а не угадывал фикс;
+- добавлял тесты или focused checks перед заявлением "готово";
+- отделял planning, implementation, review и risky decisions;
+- не трогал production, auth, data, billing или irreversible cleanup без явного
+  approval.
+
+## Что Входит В Пакет
+
+| Skill | Когда Использовать |
 |---|---|
-| `context-engineering` | Starting/resuming work, switching repos, or when source-of-truth is unclear. |
-| `spec-driven-development` | Defining what should be built before planning or coding. |
-| `planning-and-task-breakdown` | Turning fuzzy work into tasks, scope, dependencies, and stop-lines. |
-| `incremental-implementation` | Building multi-file changes in small verified slices. |
-| `source-driven-development` | Checking current official docs for SDKs, APIs, CLIs, frameworks, or cloud services. |
-| `api-and-interface-design` | Designing stable APIs, schemas, events, configs, CLIs, or module boundaries. |
-| `test-driven-development` | Fixing bugs or changing behavior with tests or focused checks. |
-| `debugging-and-error-recovery` | Investigating failures, logs, broken builds, CI, runtime bugs, or tool errors. |
-| `code-review-and-quality` | Reviewing diffs, PRs, commits, or agent-written code before merge/ship. |
-| `deprecation-and-migration` | Removing or replacing old APIs, jobs, integrations, configs, schemas, or flows. |
-| `doubt-driven-review` | Challenging high-stakes claims before production, data, auth, billing, or irreversible work. |
+| `context-engineering` | Нужно начать или продолжить работу в repo/workspace, понять source of truth, собрать короткий context pack. |
+| `spec-driven-development` | Нужно определить, что именно строим: intent, scope, non-goals, acceptance criteria, verification. |
+| `planning-and-task-breakdown` | Нужно превратить мутную или большую задачу в шаги, зависимости, stop-lines и критерии готовности. |
+| `incremental-implementation` | Нужно делать multi-file change маленькими проверяемыми slices, а не одним большим diff. |
+| `source-driven-development` | Нужно свериться с актуальными официальными docs по API, SDK, CLI, framework или cloud behavior. |
+| `api-and-interface-design` | Нужно спроектировать API, schema, event, webhook, CLI, config, module boundary или другой contract. |
+| `test-driven-development` | Нужно исправить баг или изменить поведение через тест, regression guard или focused check. |
+| `debugging-and-error-recovery` | Команда падает, CI красный, build broken, runtime bug, logs/errors, tool/API/network failure. |
+| `code-review-and-quality` | Нужно проверить diff, PR, commit или agent-produced code перед merge/ship. |
+| `deprecation-and-migration` | Нужно безопасно убрать старый код, cron, API, schema, integration, config или workflow. |
+| `doubt-driven-review` | Нужно оспорить уверенное решение перед risky work: production, auth, data, billing, public API, migration, irreversible cleanup. |
 
-## Quick Install For Codex
+## Быстрая Установка В Codex
 
-Clone the repository:
+Склонируйте репозиторий:
 
 ```bash
 git clone https://github.com/pimenov/codex-first-skills-pack.git
 cd codex-first-skills-pack
 ```
 
-Validate the pack:
+Проверьте пакет:
 
 ```bash
 python3 scripts/validate_skills.py
 ```
 
-Install into Codex:
+Установите skills в Codex:
 
 ```bash
 scripts/install.sh
 ```
 
-By default the installer copies skills into:
+По умолчанию installer копирует skills сюда:
 
 ```bash
 ${CODEX_HOME:-$HOME/.codex}/skills
 ```
 
-Dry-run first if you want to see what would happen:
+Сначала можно сделать dry-run:
 
 ```bash
 scripts/install.sh --dry-run
 ```
 
-Install only one skill:
+Установить только один skill:
 
 ```bash
 scripts/install.sh --skill source-driven-development
 ```
 
-## Install Through Codex
+После установки перезапустите Codex, чтобы новый список skills подхватился.
 
-If your Codex has the built-in `skill-installer`, you can ask Codex in plain
-English:
+## Установка Через Сам Codex
+
+Если в вашем Codex есть встроенный `skill-installer`, можно просто дать ему
+репозиторий и попросить поставить skills.
+
+Пример запроса:
 
 ```text
-Install the `source-driven-development` skill from GitHub repo
+Установи skills из репозитория https://github.com/pimenov/codex-first-skills-pack
+в мой Codex. Сначала прочитай README, сделай безопасную установку, не
+перезаписывай существующие skills без моего подтверждения, затем скажи, что
+установлено и нужно ли перезапустить Codex.
+```
+
+Можно установить один skill:
+
+```text
+Установи skill `source-driven-development` из GitHub repo
 pimenov/codex-first-skills-pack, path `skills/source-driven-development`.
 ```
 
-For multiple skills, give multiple paths:
+Или несколько skills:
 
 ```text
-Install skills from GitHub repo pimenov/codex-first-skills-pack:
+Установи skills из GitHub repo pimenov/codex-first-skills-pack:
 - skills/context-engineering
 - skills/source-driven-development
 - skills/debugging-and-error-recovery
 - skills/test-driven-development
 ```
 
-After installing new skills, restart Codex so the skills list refreshes.
+## Как Codex Выбирает Skills
 
-## Make Codex Route To These Skills
-
-Skills work best when your `AGENTS.md` tells Codex when to use them. You can
-copy the relevant block from:
+Skills лучше всего работают вместе с правилами в `AGENTS.md`. Добавьте в свой
+глобальный или project-level `AGENTS.md` routing-блок из:
 
 ```text
 templates/AGENTS.skills-routing.md
 ```
 
-The important idea is simple: users do not need to remember exact skill names.
-They can say natural phrases like:
+После этого пользователь может говорить обычными фразами:
 
-- "check the current docs";
-- "break this into tasks";
-- "debug this failure";
-- "prove it with a test";
-- "review this diff";
-- "challenge this plan before we ship it".
+- "проверь по актуальным docs";
+- "разбей на задачи";
+- "сделай пакет работы";
+- "команда падает, разбери баг";
+- "сначала докажи тестом";
+- "сделай code review";
+- "проверь, не самообманываемся";
+- "можно ли удалить старую реализацию".
 
-Codex should map those phrases to the right skill.
+Codex должен сопоставить такую фразу с подходящим skill, прочитать его
+`SKILL.md` и работать по описанному workflow.
 
-## How Skills Activate
+## Как Skills Активируются
 
-In Codex, skills are discoverable when they are installed under the active
-Codex home, usually:
+В Codex skills обычно лежат здесь:
 
 ```text
 ~/.codex/skills/<skill-name>/SKILL.md
 ```
 
-Codex sees each skill's `name` and `description`. When the user's request
-matches a description, Codex reads the full `SKILL.md` and follows that
-workflow.
+Если переменная `CODEX_HOME` указывает на другой Codex home, путь будет таким:
+
+```text
+${CODEX_HOME}/skills/<skill-name>/SKILL.md
+```
+
+Codex видит `name` и `description` каждого skill. Когда запрос пользователя
+совпадает с описанием, Codex загружает полный `SKILL.md` и следует инструкциям
+из него.
+
+## Что Этот Пакет Не Делает
+
+Пакет не:
+
+- даёт Codex право менять production без approval;
+- заменяет project-level `AGENTS.md`;
+- заменяет тесты, code review, CI/CD или deploy process;
+- содержит секреты, токены, credential setup или доступы к сервисам;
+- предполагает наличие Notion, Linear, GitHub, Jira или другого внешнего
+  трекера;
+- является полным зеркалом `addyosmani/agent-skills`.
+
+Project-specific правила всегда важнее, если они конкретнее.
+
+## Структура Репозитория
+
+```text
+skills/
+  <skill-name>/
+    SKILL.md
+scripts/
+  install.sh
+  validate_skills.py
+templates/
+  AGENTS.skills-routing.md
+docs/
+  customizing.md
+  how-it-works.md
+```
+
+## Проверка Пакета
+
+Перед публикацией или локальной установкой можно прогнать:
+
+```bash
+python3 scripts/validate_skills.py
+scripts/install.sh --dry-run
+git diff --check
+```
+
+`validate_skills.py` проверяет:
+
+- наличие `SKILL.md`;
+- корректный frontmatter;
+- совпадение имени папки и `name`;
+- базовую длину `description`;
+- отсутствие явных приватных следов в skills.
+
+## Как Адаптировать Под Себя
+
+1. Установите нужные skills.
+2. Добавьте routing-блок из `templates/AGENTS.skills-routing.md` в свой
+   `AGENTS.md`.
+3. Допишите свои правила:
+   - язык общения;
+   - tracker или documentation layer;
+   - production approval policy;
+   - test/build/lint команды;
+   - deploy и rollback правила.
+4. Не добавляйте приватные правила прямо в публичный пакет. Для company/private
+   workflows лучше сделать отдельный private skills pack.
+
+Подробнее: [docs/customizing.md](docs/customizing.md).
 
 ## Attribution
 
-This repository is an independent Codex-oriented adaptation inspired by
-[addyosmani/agent-skills](https://github.com/addyosmani/agent-skills), which is
-licensed under MIT. See [NOTICE.md](NOTICE.md) for details.
+Этот репозиторий является независимой Codex-oriented адаптацией, вдохновлённой
+[addyosmani/agent-skills](https://github.com/addyosmani/agent-skills), который
+распространяется под MIT license.
+
+Подробности: [NOTICE.md](NOTICE.md).
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT. См. [LICENSE](LICENSE).
