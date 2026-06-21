@@ -47,7 +47,7 @@ one-shot code generator and more like a disciplined engineering partner:
 Clone the repository:
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/pimenov/codex-first-skills-pack.git
 cd codex-first-skills-pack
 ```
 
@@ -87,14 +87,14 @@ If your Codex has the built-in `skill-installer`, you can ask Codex in plain
 English:
 
 ```text
-Install the `source-driven-development` skill from GitHub repo <owner>/<repo>,
-path `skills/source-driven-development`.
+Install the `source-driven-development` skill from GitHub repo
+pimenov/codex-first-skills-pack, path `skills/source-driven-development`.
 ```
 
 For multiple skills, give multiple paths:
 
 ```text
-Install skills from GitHub repo <owner>/<repo>:
+Install skills from GitHub repo pimenov/codex-first-skills-pack:
 - skills/context-engineering
 - skills/source-driven-development
 - skills/debugging-and-error-recovery
