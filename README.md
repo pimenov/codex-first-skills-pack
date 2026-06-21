@@ -13,7 +13,7 @@
 является его зеркалом. Это компактная Codex-oriented адаптация с фокусом на
 ежедневный engineering workflow.
 
-## Что Это Такое
+## Что это такое
 
 Skills в Codex это небольшие папки с инструкциями. В каждой папке лежит
 `SKILL.md`:
@@ -30,7 +30,7 @@ Skills в Codex это небольшие папки с инструкциями
 "докажи тестом", "сделай review". Codex должен сам выбрать подходящий skill и
 следовать его процессу.
 
-## Для Кого Этот Пакет
+## Для кого этот пакет
 
 Пакет полезен, если вы хотите, чтобы Codex:
 
@@ -44,7 +44,7 @@ Skills в Codex это небольшие папки с инструкциями
 - не трогал production, auth, data, billing или irreversible cleanup без явного
   approval.
 
-## Что Входит В Пакет
+## Что входит в пакет
 
 | Skill | Когда Использовать |
 |---|---|
@@ -60,7 +60,7 @@ Skills в Codex это небольшие папки с инструкциями
 | `deprecation-and-migration` | Нужно безопасно убрать старый код, cron, API, schema, integration, config или workflow. |
 | `doubt-driven-review` | Нужно оспорить уверенное решение перед risky work: production, auth, data, billing, public API, migration, irreversible cleanup. |
 
-## Быстрая Установка В Codex
+## Быстрая установка в Codex
 
 Склонируйте репозиторий:
 
@@ -101,7 +101,7 @@ scripts/install.sh --skill source-driven-development
 
 После установки перезапустите Codex, чтобы новый список skills подхватился.
 
-## Установка Через Сам Codex
+## Установка через сам Codex
 
 Если в вашем Codex есть встроенный `skill-installer`, можно просто дать ему
 репозиторий и попросить поставить skills.
@@ -132,7 +132,7 @@ pimenov/codex-first-skills-pack, path `skills/source-driven-development`.
 - skills/test-driven-development
 ```
 
-## Как Codex Выбирает Skills
+## Как Codex выбирает skills
 
 Skills лучше всего работают вместе с правилами в `AGENTS.md`. Добавьте в свой
 глобальный или project-level `AGENTS.md` routing-блок из:
@@ -155,7 +155,7 @@ templates/AGENTS.skills-routing.md
 Codex должен сопоставить такую фразу с подходящим skill, прочитать его
 `SKILL.md` и работать по описанному workflow.
 
-## Как Skills Активируются
+## Как skills активируются
 
 В Codex skills обычно лежат здесь:
 
@@ -173,7 +173,7 @@ Codex видит `name` и `description` каждого skill. Когда зап
 совпадает с описанием, Codex загружает полный `SKILL.md` и следует инструкциям
 из него.
 
-## Что Этот Пакет Не Делает
+## Что этот пакет не делает
 
 Пакет не:
 
@@ -187,7 +187,7 @@ Codex видит `name` и `description` каждого skill. Когда зап
 
 Project-specific правила всегда важнее, если они конкретнее.
 
-## Структура Репозитория
+## Структура репозитория
 
 ```text
 skills/
@@ -203,7 +203,7 @@ docs/
   how-it-works.md
 ```
 
-## Проверка Пакета
+## Проверка пакета
 
 Перед публикацией или локальной установкой можно прогнать:
 
@@ -221,7 +221,7 @@ git diff --check
 - базовую длину `description`;
 - отсутствие явных приватных следов в skills.
 
-## Как Адаптировать Под Себя
+## Как адаптировать под себя
 
 1. Установите нужные skills.
 2. Добавьте routing-блок из `templates/AGENTS.skills-routing.md` в свой
@@ -237,7 +237,7 @@ git diff --check
 
 Подробнее: [docs/customizing.md](docs/customizing.md).
 
-## Attribution
+## Атрибуция
 
 Этот репозиторий является независимой Codex-oriented адаптацией, вдохновлённой
 [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills), который
@@ -245,6 +245,6 @@ git diff --check
 
 Подробности: [NOTICE.md](NOTICE.md).
 
-## License
+## Лицензия
 
 MIT. См. [LICENSE](LICENSE).
